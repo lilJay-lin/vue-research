@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" :value="text" @change="setData('text', $event.target.value)"/>
+    <input type="text" :value="text" @input="setData('text', $event.target.value)" class="form-control"/>
   </div>
 </template>
 <script type="text/ecmascript-6">

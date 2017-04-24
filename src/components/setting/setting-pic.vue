@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <input type="url" :value="src" placeholder="图片地址" @change="setData('src', $event.target.value)"/>
-    <select name="图片外观" @change="setData('className', $event.target.value)">
-      <option :value="o.key" v-for="o in classNames" :seleted="o.key === className">{{o.value}}</option>
+  <div class="">
+    <input type="url" :value="src" placeholder="图片地址" @change="setData('src', $event.target.value)" class="form-control"/>
+    <select name="图片外观" @change="setData('className', $event.target.value)" class="form-control">
+      <option :value="o.key" v-for="o in classNames" :selected="o.key === className ? 'selected' : ''">{{o.value}}</option>
     </select>
   </div>
 </template>
@@ -31,7 +31,7 @@
     props: {
       src: {
         type: String,
-        default: '我是文本'
+        default: ''
       },
       className: {
         type: String,

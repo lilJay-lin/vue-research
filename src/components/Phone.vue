@@ -1,5 +1,5 @@
 <template>
-  <div class="config" v-drag.droppable ref="screen">
+  <div class="config" ref="screen">
     <template v-for="unit in units">
       <Unit :data="unit"></Unit>
     </template>

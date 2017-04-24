@@ -1,5 +1,5 @@
 <template>
-  <div class="control">
+  <div class="control ">
     <Setting :data="unit"></Setting>
   </div>
 </template>

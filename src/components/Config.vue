@@ -1,16 +1,18 @@
 <template>
-  <div class="container">
-    <div class="units">
-      <button @click="addUnit({type: 'txt'})">添加文字</button>
-      <button @click="addUnit({type: 'pic'})">添加图片</button>
+  <div>
+    <button @click="saveUnit" class="btn btn-primary">保存</button>
+    <div class="container">
+      <div class="units">
+        <button @click="addUnit({type: 'txt'})" class="btn btn-primary">添加文字</button>
+        <button @click="addUnit({type: 'pic'})"  class="btn btn-primary">添加图片</button>
+      </div>
+      <Phone :units="units.items"></Phone>
+      <Control :unit="currentUnit"></Control>
     </div>
-    <Phone :units="units.items"></Phone>
-    <Control :unit="currentUnit"></Control>
   </div>
 </template>
 <script type="text/ecmascript-6">
   import {NS_UNITS} from '../constant'
-  import eventBus from '../event-bus'
   import {mapGetters, mapActions} from 'Vuex'
   import Control from './Control.vue'
   import Phone from './Phone.vue'
@@ -25,12 +27,14 @@
       }
     },
     created: function () {
-      eventBus.$on('click:unit', (id) => {
+      let vm = this
+      vm.getUnit({id: this.$route.params.id}).then((data) => {
+        vm.setUnit(data)
       })
     },
     computed: mapGetters(NS_UNITS, ['units', 'selected', 'currentUnit']),
     methods: {
-      ...mapActions(NS_UNITS, ['addUnit', 'setUnit'])
+      ...mapActions(NS_UNITS, ['addUnit', 'setUnit', 'saveUnit', 'getUnit'])
     }
   }
 </script>
