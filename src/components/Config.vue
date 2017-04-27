@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="saveUnit" class="btn btn-primary">保存</button>
+    <a :href="'http://localhost:8080/api/h5/preview/' + $route.params.id" target="_blank" class="btn btn-primary">预览</a>
     <div class="container">
       <div class="units">
         <button @click="addUnit({type: 'txt'})" class="btn btn-primary">添加文字</button>
@@ -28,9 +29,7 @@
     },
     created: function () {
       let vm = this
-      vm.getUnit({id: this.$route.params.id}).then((data) => {
-        vm.setUnit(data)
-      })
+      vm.getUnit({id: this.$route.params.id})
     },
     computed: mapGetters(NS_UNITS, ['units', 'selected', 'currentUnit']),
     methods: {
@@ -42,15 +41,6 @@
   .container{
     width: 100%;
     display: flex;
-  }
-  .config{
-    position: relative;
-    width: 320px;
-    height: 480px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid #000000;
-    cursor: pointer;
   }
   .units{
     position: relative;

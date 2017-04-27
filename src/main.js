@@ -7,8 +7,8 @@ import router from './router'
 /*
 * plugins
 * */
-import Drag from './plugins/Drag.js'
-import Template from './plugins/Template.js'
+import Template from './plugins/template.js'
+import Move from './plugins/move.js'
 
 /*
 * functional component
@@ -21,7 +21,7 @@ import store from './vuex/store.js'
 Vue.component('Unit', Unit)
 Vue.component('Setting', Setting)
 
-Vue.use(Drag)
+Vue.use(Move)
 Vue.use(Template)
 
 Vue.config.productionTip = false

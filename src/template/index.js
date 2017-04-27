@@ -16,7 +16,7 @@ export default {
         },
         cssText: {
           type: String,
-          default: 'z-index:' + index * 10 + ';width:100%;top:0px;left:0px;'
+          default: 'z-index:' + index + ';'
         },
         text: {
           type: String,
@@ -29,7 +29,7 @@ export default {
     return {
       type: 'pic',
       id: 'n_' + index,
-      content: '<img :style="cssText" :class="[className]" :src="src" />',
+      content: '<div  :style="cssText"><img :class="[className]" :src="src" /></div>',
       props: {
         className: {
           type: String,
@@ -37,7 +37,7 @@ export default {
         },
         cssText: {
           type: String,
-          default: 'z-index:' + index * 10 + ';width:100px;top:0px;left:0px;'
+          default: 'z-index:' + index + ';width:100px'
         },
         src: {
           type: String,
