@@ -21,8 +21,9 @@ export default {
   name: 'unit',
   functional: true,
   render: (createElement, context) => {
-    let data = context.props.data
-    let selectedClass = context.props.selected ? ' selected' : ''
+    let props = context.props
+    let data = props.data
+    let selectedClass = props.selected ? ' selected' : ''
     /*
      * 取出传入funtional组件的data的数据，当成unit组件的props传入
      * */
@@ -37,7 +38,8 @@ export default {
       },
       nativeOn: {
         click (e) {
-          eventBus.$emit('mousestart:unit', data.id)
+          console.dir(data)
+          eventBus.$emit('mousestart:unit', props.index)
         },
         mousedown (e) {
           e.preventDefault()
@@ -52,7 +54,7 @@ export default {
             x: e.pageX,
             y: e.pageY
           }
-          eventBus.$emit('mousestart:unit', data.id)
+          eventBus.$emit('mousestart:unit', props.index)
           let mousemove = (e) => {
             e.preventDefault()
             if (!isMove || _tagEl === null) {
@@ -100,6 +102,10 @@ export default {
     selected: {
       type: Boolean,
       default: false
+    },
+    index: {
+      type: Number,
+      default: 0
     },
     /*
      * 接收整个unit数据

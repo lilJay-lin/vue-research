@@ -15,8 +15,15 @@ export default new Router({
     {
       path: '/animate',
       name: 'Animate',
-      component: (resolve) => {
+      component (resolve) {
         require(['../components/Animate'], resolve)
+      }
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component (resolve) {
+        require(['../components/Home'], resolve)
       }
     }
   ]

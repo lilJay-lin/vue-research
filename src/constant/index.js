@@ -7,3 +7,4 @@ export const DEFAULT_UNIT_INITIALS = 'U-'
 * namespace
 * */
 export const NS_UNITS = 'units'
+export const NS_PAGE = 'page'

@@ -3,7 +3,7 @@
  */
 import Vue from 'vue'
 import Vuex from 'Vuex'
-import modules from './modules'
+import modules from './modules/index.js'
 import createLogger from 'Vuex/src/plugins/logger.js'
 
 Vue.use(Vuex)

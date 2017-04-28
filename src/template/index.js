@@ -37,7 +37,7 @@ export default {
         },
         cssText: {
           type: String,
-          default: 'z-index:' + index + ';width:100px'
+          default: 'z-index:' + index + ';width:100px;'
         },
         src: {
           type: String,

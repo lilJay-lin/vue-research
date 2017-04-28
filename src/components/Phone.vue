@@ -1,7 +1,7 @@
 <template>
   <div class="phone" ref="screen">
-    <template v-for="unit in units">
-      <Unit :data="unit" :selected="selected === unit.id"></Unit>
+    <template v-for="(unit, index) in units">
+      <Unit :data="unit" :selected="selected === index" :index="index"></Unit>
     </template>
   </div>
 </template>
