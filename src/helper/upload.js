@@ -9,7 +9,7 @@ export const upload = (files) => {
   util.each(files, (file) => {
     formData.append('files', file)
   })
-  Server.request({
+  return Server.request({
     url: base + '/upload',
     method: 'post',
     data: formData

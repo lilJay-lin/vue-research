@@ -1,8 +1,7 @@
 /**
  * Created by linxiaojie on 2016/11/21.
  */
-
-export default {
+let config = {
   RESPONSE_CODE: {
     SUCCESS_CODE: 1,
     DEFAULT_ERROR_CODE: 0,
@@ -17,5 +16,7 @@ export default {
     USER_DATA: '__xmb_user_info__'
   },
   DEFAULT_ERROR_MSG: '操作失败，请稍后重试',
-  BASE_SERVER: 'http://localhost:8080/api'
+  BASE_SERVER_HOST: 'http://localhost:8080'
 }
+config.BASE_SERVER = config.BASE_SERVER_HOST + '/api'
+export default config

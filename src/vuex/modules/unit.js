@@ -132,7 +132,7 @@ const actions = {
     return server.request({
       url: '/h5/' + id
     }).then(({res: {h5}}) => {
-      dispatch('setUnit', h5)
+      h5 && dispatch('setUnit', h5)
     })
   }
 }

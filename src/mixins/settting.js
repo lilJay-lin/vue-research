@@ -6,6 +6,7 @@ import {mapActions} from 'Vuex'
 import {util} from 'liljay-common-utils'
 import {convertToObject, convertToPx} from '../helper/convert.js'
 import {upload} from '../helper/upload.js'
+import config from '../config'
 
 export default {
   computed: {
@@ -26,6 +27,7 @@ export default {
       this.setUnitStyle(obj)
     },
     onUploadHandle (e) {
+      let vm = this
       let btn = e.target
       let fileField = btn.dataset.file
       if (!fileField) {
@@ -38,7 +40,9 @@ export default {
           files.push(file)
         })
       })
-      upload(files)
+      upload(files).then(({res: {list}}) => {
+        vm.setData('src', config.BASE_SERVER_HOST + list[0].path)
+      })
     }
   }
 }
