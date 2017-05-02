@@ -8,3 +8,4 @@ export const DEFAULT_UNIT_INITIALS = 'U-'
 * */
 export const NS_UNITS = 'units'
 export const NS_PAGE = 'page'
+export const NS_H5 = 'h5'

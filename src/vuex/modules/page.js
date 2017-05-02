@@ -42,10 +42,12 @@ const actions = {
   setPage ({commit}, unit = {}) {
     commit(types.SET_PAGE, unit)
   },
-  createPage ({commit}) {
+  createPage ({commit}, {name, description}) {
     return server.request({
       url: '/h5/create',
       data: {
+        name,
+        description,
         pages: [{
           maxIndex: 0,
           items: []

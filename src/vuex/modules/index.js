@@ -3,8 +3,10 @@
  */
 import units from './unit.js'
 import page from './page.js'
+import h5 from './h5.js'
 
 export default {
   page,
-  units
+  units,
+  h5
 }

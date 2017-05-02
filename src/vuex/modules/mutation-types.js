@@ -15,3 +15,6 @@ export const ADD_PAGE = 'ADD_PAGE'
 export const DEL_PAGE = 'DEL_PAGE'
 export const SET_PAGE = 'SET_PAGE'
 export const SELECTED_PAGE = 'SELECTED_PAGE'
+
+export const LOAD_H5 = 'LOAD_H5'
+export const DEL_H5 = 'DEL_H5'
