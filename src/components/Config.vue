@@ -1,18 +1,39 @@
 <template>
   <div>
-    <button @click="savePage" class="btn btn-primary">保存</button>
-    <a :href="'http://localhost:8080/api/h5/preview/' + $route.params.id" target="_blank" class="btn btn-primary">预览</a>
-    <div class="units">
-      <button @click="addUnit({type: 'txt'})" class="btn btn-primary">添加文字</button>
-      <button @click="addUnit({type: 'pic'})"  class="btn btn-primary">添加图片</button>
-      <button @click="onAddPageHandle"  class="btn btn-primary">新增页面</button>
+    <div class="navbar navbar-default ">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="javascript:void(0)" @click="onAddPageHandle">新增页面</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"  @click="savePage">保存</a>
+          </li>
+          <li>
+            <a :href="'http://localhost:8080/api/h5/preview/' + $route.params.id" target="_blank">预览</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="container">
-      <div class="pages">
+    <div class="slider">
+      <div class="list-group">
+        <a href="javascript:void(0)" class="list-group-item active">
+          基础组件
+        </a>
+        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'txt'})">
+          <span class="glyphicon glyphicon-plus"></span>文字
+        </a>
+        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'pic'})">
+          <span class="glyphicon glyphicon-plus"></span>图片
+        </a>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="list-group page-list">
         <template v-for="(page, index) in pages">
-          <div :class="['page', index === selected ? 'selected' : '']" @click="onSelectedPageHandle(index)">
-            <p>第{{index + 1}}页</p>
-          </div>
+          <a :class="['list-group-item', index === selected ? 'active' : '']" @click="onSelectedPageHandle(index)">
+            第{{index + 1}}页
+          </a>
         </template>
       </div>
       <Phone :units="units.items"></Phone>
@@ -74,26 +95,32 @@
   }
 </script>
 <style>
-  .pages{
-    width: 100px;
-    text-align: center;
-  }
-  .page{
-    margin: 0 auto 15px;
-    width: 80px;
-    height: 80px;
-    border: 1px solid #2e2e2e;
-    text-align: center;
-  }
-  .page.selected{
-    border: 1px solid #0088f6;
-  }
-  .container{
+  .main-container{
     width: 100%;
     display: flex;
+    padding: 0 50px 0 170px;
+  }
+  .navbar{
+    z-index: 2;
   }
   .control{
     flex: 1;
     position: relative;
   }
+  .slider{
+    width: 150px;
+    background: #fff;
+    bottom:0;
+    position: fixed;
+    top:0;
+    left: 0;
+    padding: 55px 5px 0;
+  }
+  .list-group-item .glyphicon{
+    margin-right: 10px;
+  }
+  .page-list{
+    margin: 50px 0 0 60px;
+  }
+
 </style>

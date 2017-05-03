@@ -26,13 +26,9 @@ const getters = {
 }
 
 const actions = {
-  loadH5 ({commit}, {page, pageSize}) {
+  loadH5 ({commit}, {page = 1, pageSize = 10}) {
     return server.request({
-      url: '/h5/list',
-      data: {
-        page,
-        pageSize
-      }
+      url: '/h5/list?page=' + page + '&pageSize=' + pageSize
     }).then(({res}) => {
       commit(types.LOAD_H5, res)
     })

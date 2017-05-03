@@ -42,7 +42,7 @@
     position: relative;
     width: 320px;
     height: 480px;
-    margin: 0 auto;
+    margin: 0 30px;
     cursor: pointer;
     border: 1px solid #e2e2e2;
     box-sizing: border-box;

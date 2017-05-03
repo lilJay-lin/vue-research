@@ -31,7 +31,7 @@
       <div class="row">
         <template v-for = 'h5 in allH5.list'>
           <div class="col-sm-2" >
-            <div class="h5-item">
+            <div class="h5-item thumbnail">
               <span>{{h5.name}}</span>
               <span>{{h5.description}}</span>
               <router-link :to="{name: 'Config', params: {id: h5._id}}">预览</router-link>
@@ -60,7 +60,7 @@
   export default {
     computed: mapGetters(NS_H5, ['allH5']),
     created: function () {
-      this.onLoadHandle({page: 1})
+      this.loadH5({page: 1})
     },
     methods: {
       ...mapActions(NS_PAGE, ['createPage']),
