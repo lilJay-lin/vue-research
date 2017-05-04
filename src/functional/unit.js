@@ -38,7 +38,6 @@ export default {
       },
       nativeOn: {
         click (e) {
-          console.dir(data)
           eventBus.$emit('mousestart:unit', props.index)
         },
         mousedown (e) {

@@ -15,6 +15,9 @@ const mutations = {
   [types.ADD_PAGE] (state, page) {
     state.pages.push(page)
   },
+  [types.DEL_PAGE] (state, id) {
+    state.pages.splice(id, 1)
+  },
   [types.SELECTED_PAGE] (state, id) {
     state.selected = id
   },
@@ -34,7 +37,11 @@ const actions = {
   addPage ({commit, state}) {
     let page = {items: [], maxIndex: 0}
     commit(types.ADD_PAGE, page)
-    commit(types.SELECTED_PAGE, state.pages.length - 1)
+    return Promise.resolve(state.pages.length - 1)
+  },
+  delPage ({commit, state}, {id}) {
+    commit(types.DEL_PAGE, id)
+    return Promise.resolve(state.pages.length)
   },
   selectPage ({commit}, {id}) {
     commit(types.SELECTED_PAGE, id)
@@ -73,8 +80,6 @@ const actions = {
       url: '/h5/save',
       data,
       method: 'post'
-    }).then((res) => {
-      console.dir(res)
     })
   },
   loadPage ({commit, dispatch}, {id}) {

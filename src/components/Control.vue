@@ -1,5 +1,5 @@
 <template>
-  <div class="control ">
+  <div class="control">
     <Setting :data="unit"></Setting>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
 }
 </script>
 <style>
+  .control{
+    position: relative;
+    width: 600px;
+  }
   .number{
     width: 40px;
   }
