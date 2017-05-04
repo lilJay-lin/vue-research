@@ -1,5 +1,5 @@
 <template>
-  <setting-container>
+  <div>
     <setting-common :css-text="cssText"></setting-common>
     <div class="form-group">
       <label for="select_pic" class="col-sm-2 control-label">图片地址</label>
@@ -24,16 +24,14 @@
         <button class="btn btn-primary control-label" @click="onUploadHandle" data-file=".js-file">上传图片</button>
       </div>
     </div>
-  </setting-container>
+  </div>
 </template>
 <script type="text/ecmascript-6">
   import SettingMixins from '../../mixins/settting.js'
   import SettingCommon from './setting-common.vue'
-  import SettingContainer from './setting-container.vue'
   export default {
     components: {
-      SettingCommon,
-      SettingContainer
+      SettingCommon
     },
     data: function () {
       return {

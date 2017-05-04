@@ -4,9 +4,10 @@
 import * as types from './mutation-types.js'
 import {util} from 'liljay-common-utils'
 import tpl from '../../template/index.js'
-const _ = require('lodash')
 let id = '_unit_'
 const state = {
+  background: '#ffffff',
+  backgroundImage: '',
   selected: 0,
   items: [],
   maxIndex: 0
@@ -60,12 +61,17 @@ const actions = {
   selectUnit ({commit}, {id}) {
     commit(types.SELECTED_UNIT, id)
   },
-  setUnit ({commit}, option = {}) {
+  resetUnit ({commit}, option = {}) {
     commit(types.SELECTED_UNIT, 0)
-    let unit = _.cloneDeep(option)
-    unit.items = unit.items || []
-    unit.maxIndex = unit.maxIndex || 0
+    let unit = {}
+    unit.items = option.items || []
+    unit.maxIndex = option.maxIndex || 0
+    unit.background = option.background || '#ffffff'
+    unit.backgroundImage = option.backgroundImage || ''
     commit(types.SET_UNIT, unit)
+  },
+  setUnitProp ({commit}, option = {}) {
+    commit(types.SET_UNIT, option)
   },
   /*
    * 设置组件data
@@ -83,14 +89,14 @@ const actions = {
     }
     let cssText = item.data.cssText
     util.each(option, (val, key) => {
-      let reg = new RegExp(key + ':([\\-a-zA-Z0-9\\s]*)(;|$)', 'g')
+      let reg = new RegExp('(;|\\s+|^)' + key + ':([#\\-a-zA-Z0-9\\s\\(\\)]*)(;|$)', 'g')
       let hint = 0
-      cssText = cssText.replace(reg, (text, oldVal) => {
+      cssText = cssText.replace(reg, (text, split, oldVal) => {
         hint = 1
-        return key + ':' + val + ';'
+        return ';' + key + ':' + val + ';'
       })
       if (!hint) {
-        cssText = cssText + key + ':' + val + ';'
+        cssText = cssText + (/;$/.test(cssText) ? '' : ';') + key + ':' + val + ';'
       }
     })
     commit(types.SET_UNIT_STYLE, {cssText})

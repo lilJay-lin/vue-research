@@ -28,8 +28,8 @@ const mutations = {
       }
     })
   },
-  [types.SET_PAGE] (state, {items = [], maxIndex = 0}) {
-    state.pages[state.selected] = {items, maxIndex}
+  [types.SET_PAGE] (state, {items = [], maxIndex = 0, background = 'transparent', backgroundImage = ''}) {
+    state.pages[state.selected] = {background, backgroundImage, items, maxIndex}
   }
 }
 

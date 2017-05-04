@@ -50,8 +50,8 @@
          </div>
         </template>
       </div>
-      <Phone :units="units.items"></Phone>
-      <Control :unit="currentUnit"></Control>
+      <Phone :units="units"></Phone>
+      <Control :unit="currentUnit" :page = 'units'></Control>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@
       ...mapGetters(NS_UNITS, ['units', 'currentUnit'])
     },
     methods: {
-      ...mapActions(NS_UNITS, ['addUnit', 'setUnit']),
+      ...mapActions(NS_UNITS, ['addUnit', 'resetUnit']),
       ...mapActions(NS_PAGE, ['addPage', 'delPage', 'savePage', 'loadPage', 'selectPage', 'setPage']),
       onSelectedPageHandle: function (id) {
         let vm = this
@@ -96,7 +96,7 @@
       selectedPage: function (id) {
         let vm = this
         vm.selectPage({id: id}).then(() => {
-          vm.setUnit(vm.currentPage)
+          vm.resetUnit(vm.currentPage)
         })
       },
       onAddPageHandle: function () {

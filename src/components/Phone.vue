@@ -1,6 +1,6 @@
 <template>
-  <div class="phone" ref="screen">
-    <template v-for="(unit, index) in units">
+  <div class="phone" ref="screen" :style="{'background-color': units.background}">
+    <template v-for="(unit, index) in units.items">
       <Unit :data="unit" :selected="selected === index" :index="index"></Unit>
     </template>
   </div>
@@ -12,9 +12,13 @@
   export default {
     props: {
       units: {
-        type: Array,
+        type: Object,
         default: function () {
-          return []
+          return {
+            background: '',
+            backgroundImage: '',
+            items: []
+          }
         }
       }
     },

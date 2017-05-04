@@ -1,5 +1,5 @@
 <template>
-  <div class="form-horizontal">
+  <div>
     <div class="form-group">
       <label for="select_position" class="col-sm-2 control-label">定位</label>
       <div class="col-sm-3">
@@ -7,7 +7,7 @@
           <option :value="o.key" v-for="o in positions" :selected="o.key === styleObject.position ? 'selected' : ''">{{o.value}}</option>
         </select>
       </div>
-      <div v-show="'initial' !== styleObject.position" class="col-sm-7">
+      <div v-show="'relative/absolute'.indexOf(styleObject.position) > -1" class="col-sm-7">
         <label for="input_top" class="col-sm-2 control-label">Top</label>
         <div class="col-sm-3">
           <input type="text" :value="styleObject.top" id="input_top" class="form-control" @input="setStyleProp('top', $event.target.value)">

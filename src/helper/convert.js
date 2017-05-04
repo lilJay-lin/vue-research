@@ -6,16 +6,23 @@
 * 从样式字符串提取指定样式属性配置
 * */
 export const convertToObject = (cssText = '') => {
-  let reg = new RegExp('\\s*([\\-a-zA-Z0-9]*)\\s*:\\s*([\\-a-zA-Z0-9]*)\\s*;|$', 'g')
+  let reg = new RegExp('(;|\\s*|^)([\\-a-zA-Z0-9]*)\\s*:\\s*([#\\-a-zA-Z0-9\\(\\)]*)\\s*;|$', 'g')
   let b = null
   let styleObject = {}
   while ((b = reg.exec(cssText))[0]) {
-    let key = b[1]
+    let key = b[2]
     if (key) {
-      styleObject[key] = convertToNumber(key, b[2])
+      styleObject[key] = decorateConvert(key, b[3])
     }
   }
   return styleObject
+}
+
+/*
+* 转换装饰器
+* */
+export const decorateConvert = (key, val) => {
+  return convertToNumber(key, val)
 }
 
 /*

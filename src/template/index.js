@@ -16,7 +16,7 @@ export default {
         },
         cssText: {
           type: String,
-          default: 'z-index:' + index + ';'
+          default: 'z-index:' + index + ';color: #000000;background-color: transparent;'
         },
         text: {
           type: String,
