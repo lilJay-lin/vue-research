@@ -19,6 +19,12 @@
         <div class="col-sm-2"><button class="btn btn-primary" @click="upToTop">置顶</button></div>
       </div>
     </div>
+    <div class="form-group">
+      <label for="input_width" class="col-sm-2 control-label">宽度</label>
+      <div class="col-sm-3">
+        <input type="text" :value="styleObject.width" id="input_width" class="form-control" @input="setStyleProp('width', $event.target.value)">
+      </div>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
