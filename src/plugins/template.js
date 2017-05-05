@@ -4,8 +4,7 @@
  * 注册所有template模版为Vue组件
  */
 import {util} from 'liljay-common-utils'
-import {DEFAULT_UNIT_INITIALS} from '../constant/index.js'
-import template from '../template'
+import Units from '../components/unit/index.js'
 let Vue
 
 let Tpl = {}
@@ -16,15 +15,8 @@ Tpl.install = (_Vue) => {
     )
     return
   }
-  util.each(template, (val, key) => {
-    if (key === 'get') {
-      return true
-    }
-    let obj = val({})
-    _Vue.component(DEFAULT_UNIT_INITIALS + key, {
-      template: obj.content,
-      props: obj.props
-    })
+  util.each(Units, (val, key) => {
+    _Vue.component(key, val)
   })
   Vue = _Vue
 }

@@ -10,13 +10,13 @@
  */
 import {util} from 'liljay-common-utils'
 import eventBus from '../event-bus/index.js'
-import {DEFAULT_UNIT_INITIALS} from '../constant/index.js'
 import {convertToObject} from '../helper/convert.js'
+import Unit from '../components/unit'
 
 function findEl (el) {
   return el ? el.dataset && el.dataset.move ? el : findEl(el.parentNode) : null
 }
-
+const INITIALS = 'Unit'
 export default {
   name: 'unit',
   functional: true,
@@ -31,6 +31,12 @@ export default {
     let startDis = {}
     let _tagEl = null
     let styleObject = null
+    let type = data.type
+    let component = type ? Unit[INITIALS + type.slice(0, 1).toUpperCase() + type.slice(1)] : ''
+    if (component === '') {
+      console.error('组件未定义：' + INITIALS + type.slice(0, 1).toUpperCase() + type.slice(1))
+      return
+    }
     let vnodeData = {
       'class': selectedClass,
       attrs: {
@@ -92,7 +98,7 @@ export default {
       context.data[key] = val
     })
     return createElement(
-      DEFAULT_UNIT_INITIALS + data.type,
+      component,
       context.data,
       context.children
     )

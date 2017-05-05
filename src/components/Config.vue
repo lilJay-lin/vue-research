@@ -37,6 +37,9 @@
         <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'pic'})">
           <span class="glyphicon glyphicon-plus"></span>图片
         </a>
+        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'banner'})">
+          <span class="glyphicon glyphicon-plus"></span>广告图
+        </a>
       </div>
     </div>
     <div class="main-container">

@@ -46,6 +46,30 @@ export default {
       }
     }
   },
+  banner ({index = 0, className = ''}) {
+    return {
+      type: 'banner',
+      id: 'n_' + index,
+      props: {
+        className: {
+          type: String,
+          default: ''
+        },
+        cssText: {
+          type: String,
+          default: 'z-index:' + index + ';width:100px;'
+        },
+        src: {
+          type: String,
+          default: 'static/assets/img/1.png'
+        },
+        link: {
+          type: String,
+          default: '#'
+        }
+      }
+    }
+  },
   get (option) {
     let {type} = option
     let me = this

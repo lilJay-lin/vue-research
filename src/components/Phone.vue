@@ -66,4 +66,10 @@
   .selected {
     border: 2px solid #0088f6;
   }
+  /*
+    无效化A标签跳转
+  */
+  .phone a{
+    pointer-events: none;
+  }
 </style>
