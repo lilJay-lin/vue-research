@@ -11,12 +11,11 @@
 import {util} from 'liljay-common-utils'
 import eventBus from '../event-bus/index.js'
 import {convertToObject} from '../helper/convert.js'
-import Unit from '../components/unit'
+import tpl from '../template/index.js'
 
 function findEl (el) {
   return el ? el.dataset && el.dataset.move ? el : findEl(el.parentNode) : null
 }
-const INITIALS = 'Unit'
 export default {
   name: 'unit',
   functional: true,
@@ -32,9 +31,9 @@ export default {
     let _tagEl = null
     let styleObject = null
     let type = data.type
-    let component = type ? Unit[INITIALS + type.slice(0, 1).toUpperCase() + type.slice(1)] : ''
-    if (component === '') {
-      console.error('组件未定义：' + INITIALS + type.slice(0, 1).toUpperCase() + type.slice(1))
+    let component = tpl.getComponent(type) ? type : ''
+    if (!component) {
+      console.error('组件未定义：' + type)
       return
     }
     let vnodeData = {

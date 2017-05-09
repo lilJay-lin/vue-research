@@ -87,10 +87,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new webpack.DllReferencePlugin({
+/*    new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('../vendors/manifest.json')
-    })
+      manifest: require('../vendors/manifest.json'),
+      name: 'dll'
+    })*/
   ]
 })
 

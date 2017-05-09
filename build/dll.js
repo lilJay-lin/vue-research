@@ -10,20 +10,19 @@ const vendors = [
   'liljay-common-utils',
   'Vuex/src/plugins/logger.js'
 ]
-console.log(__dirname)
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '../vendors'),
-    filename: '[name].[chunkhash].js',
-    library: '[name]_[chunkhash]'
+    path: path.resolve(__dirname, '../static/js'),
+    filename: '[name].js',
+    library: '[name]'
   },
   entry: {
-    vendor: vendors
+    dll: vendors
   },
   plugins: [
     new webpack.DllPlugin({
       path: 'vendors/manifest.json',
-      name: '[name]_[chunkhash]',
+      name: '[name]',
       context: __dirname
     })
   ]

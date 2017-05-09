@@ -31,9 +31,10 @@ module.exports = merge(baseWebpackConfig, {
       inject: true
     }),
     new FriendlyErrorsPlugin(),
-    new webpack.DllReferencePlugin({
+/*    new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('../vendors/manifest.json')
-    })
+      manifest: require('../vendors/manifest.json'),
+      name: 'dll'
+    })*/
   ]
 })

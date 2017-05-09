@@ -1,6 +1,6 @@
 # vue-research
 
-> A Vue.js project
+> H5可视化编辑
 
 ## Build Setup
 
@@ -18,4 +18,6 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 说明
+
+* 前端部分使用vue2.2版本, 后端使用 nodejs + mongodb（https://git.oschina.net/liljay/xmb/tree/swagger/）

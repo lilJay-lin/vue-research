@@ -44,8 +44,7 @@ const mutations = {
     state.maxIndex = index
   },
   [types.UP_TO_TOP] (state) {
-    let index = state.maxIndex
-    state.maxIndex = index + 1
+    state.maxIndex = state.maxIndex + 1
   }
 }
 
@@ -105,7 +104,7 @@ const actions = {
    * 置顶
    * */
   upToTop ({dispatch, commit, state}) {
-    dispatch('setUnitStyle', {'z-index': state.maxIndex})
+    dispatch('setUnitStyle', {'z-index': state.maxIndex + 1})
     commit(types.UP_TO_TOP)
   }
 }

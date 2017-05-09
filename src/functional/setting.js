@@ -16,7 +16,7 @@ export default {
     util.each(data, (val, key) => {
       context.data.props[key] = val
     })
-    let component = type ? Setting[INITIALS + type.slice(0, 1).toUpperCase() + type.slice(1)] || 'div' : 'div'
+    let component = type ? Setting[INITIALS + type.replace(/^Unit/i, '')] || 'div' : 'div'
     return h(
       component,
       context.data,

@@ -29,17 +29,13 @@
 
       <div class="list-group">
         <a href="javascript:void(0)" class="list-group-item active">
-          基础组件
+          组件
         </a>
-        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'txt'})">
-          <span class="glyphicon glyphicon-plus"></span>文字
-        </a>
-        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'pic'})">
-          <span class="glyphicon glyphicon-plus"></span>图片
-        </a>
-        <a href="javascript:void(0)" class="list-group-item" @click="addUnit({type: 'banner'})">
-          <span class="glyphicon glyphicon-plus"></span>广告图
-        </a>
+        <template v-for="(selector, index) in selectors">
+          <a href="javascript:void(0)" class="list-group-item" key="index" @click="addUnit({type: selector.key})">
+            <span class="glyphicon glyphicon-plus"></span>{{selector.val}}
+          </a>
+        </template>
       </div>
     </div>
     <div class="main-container">
@@ -59,6 +55,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import tpl from '../template/index.js'
   import {NS_UNITS, NS_PAGE} from '../constant/index.js'
   import {mapGetters, mapActions} from 'Vuex'
   import Control from './Control.vue'
@@ -70,7 +67,7 @@
     },
     data: function () {
       return {
-        screenRect: {}
+        selectors: tpl.getSelectComponents()
       }
     },
     created: function () {

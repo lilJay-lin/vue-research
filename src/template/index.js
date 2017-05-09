@@ -3,88 +3,55 @@
  * 组件模版，通过调用get(type)返回vuex 的组件state
  */
 import {util} from 'liljay-common-utils'
+import {components} from 'vue-research-unit'
+let _Vue = null
+let keys = Object.keys(components)
 export default {
-  txt ({index = 0, className = ''}) {
-    return {
-      type: 'txt',
-      id: 'n_' + index,
-      content: '<div :style="cssText" :class="[className]">{{text}}</div>',
-      props: {
-        className: {
-          type: String,
-          default: ''
-        },
-        cssText: {
-          type: String,
-          default: 'z-index:' + index + ';color: #000000;background-color: transparent;'
-        },
-        text: {
-          type: String,
-          default: '我是文本'
-        }
-      }
-    }
-  },
-  pic ({index = 0, className = ''}) {
-    return {
-      type: 'pic',
-      id: 'n_' + index,
-      content: '<div  :style="cssText"><img :class="[className]" :src="src" /></div>',
-      props: {
-        className: {
-          type: String,
-          default: ''
-        },
-        cssText: {
-          type: String,
-          default: 'z-index:' + index + ';width:100px;'
-        },
-        src: {
-          type: String,
-          default: 'static/assets/img/1.png'
-        }
-      }
-    }
-  },
-  banner ({index = 0, className = ''}) {
-    return {
-      type: 'banner',
-      id: 'n_' + index,
-      props: {
-        className: {
-          type: String,
-          default: ''
-        },
-        cssText: {
-          type: String,
-          default: 'z-index:' + index + ';width:100px;'
-        },
-        src: {
-          type: String,
-          default: 'static/assets/img/1.png'
-        },
-        link: {
-          type: String,
-          default: '#'
-        }
-      }
-    }
-  },
-  get (option) {
-    let {type} = option
-    let me = this
-    if (!me[type]) {
+  modal ({index = 0, type = ''}) {
+    if (keys.indexOf(type) === -1) {
       console.error('cannot find template ' + type)
       return
     }
-    let obj = me[type](option)
-    let data = {}
-    util.each(obj.props, (val, key) => {
-      let def = obj.props[key].default
-      data[key] = util.isFunction(def) ? def() : def
+    let me = this
+    let component = me.getComponent(type)
+    let props = component.props
+    let obj = {
+      type,
+      id: 'n_' + index,
+      data: {}
+    }
+    util.each(props, (val, key) => {
+      let def = props[key].default
+      obj.data[key] = util.isFunction(def) ? key === 'cssText' ? def(index) : def() : def
     })
-    delete obj.props
-    obj.data = data
     return obj
+  },
+  get (option) {
+    return this.modal(option)
+  },
+  getComponent (name) {
+    return components[name]
+  },
+  /*
+  * 返回可选组件类型和label
+  * */
+  getSelectComponents () {
+    let obj = []
+    util.each(components, (component, key) => {
+      obj.push({
+        key,
+        val: component.label
+      })
+    })
+    return obj
+  },
+  register (Vue) {
+    if (_Vue) {
+      return
+    }
+    _Vue = Vue
+    util.each(components, (val, key) => {
+      _Vue.component(key, val)
+    })
   }
 }

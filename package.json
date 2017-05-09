@@ -17,6 +17,7 @@
     "purecss": "^0.6.2",
     "qwest": "^4.4.5",
     "vue": "^2.2.4",
+    "vue-research-unit": "^1.0.2",
     "vue-router": "^2.2.0",
     "vue-server-renderer": "^2.2.4",
     "vuex": "^2.2.1"
