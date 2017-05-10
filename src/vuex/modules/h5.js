@@ -32,6 +32,14 @@ const actions = {
     }).then(({res}) => {
       commit(types.LOAD_H5, res)
     })
+  },
+  delH5 ({commit, dispatch, state}, {id}) {
+    return server.request({
+      url: '/h5/' + id,
+      method: 'delete'
+    }).then(() => {
+      dispatch('loadH5', state.pageInfo)
+    })
   }
 }
 

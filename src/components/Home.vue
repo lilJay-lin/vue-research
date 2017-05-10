@@ -32,9 +32,12 @@
         <template v-for = 'h5 in allH5.list'>
           <div class="col-sm-2" >
             <div class="h5-item thumbnail">
-              <span>{{h5.name}}</span>
-              <span>{{h5.description}}</span>
-              <router-link :to="{name: 'Config', params: {id: h5._id}}">预览</router-link>
+              <div>{{h5.name}}</div>
+              <div>{{h5.description}}</div>
+              <div>
+                <a href="javascript:void(0)" @click="remove(h5._id)">删除</a>
+                <router-link :to="{name: 'Config', params: {id: h5._id}}">预览</router-link>
+              </div>
             </div>
           </div>
         </template>
@@ -64,7 +67,7 @@
     },
     methods: {
       ...mapActions(NS_PAGE, ['createPage']),
-      ...mapActions(NS_H5, ['loadH5']),
+      ...mapActions(NS_H5, ['loadH5', 'delH5']),
       toggleDialog: function (status) {
         status ? util.show(this.$refs.modal) : util.hide(this.$refs.modal)
       },
@@ -84,6 +87,9 @@
           return
         }
         return vm.loadH5({page})
+      },
+      remove: function (id) {
+        this.delH5({id})
       }
     }
   }
@@ -112,5 +118,8 @@
   }
   .pagination-wrapper{
     text-align: right;
+  }
+  .thumbnail >div:nth-child(1), .thumbnail >div:nth-child(2){
+    overflow: hidden;
   }
 </style>
