@@ -4,6 +4,10 @@
  */
 import {util} from 'liljay-common-utils'
 import {components} from 'vue-research-unit'
+/*
+导入css
+*/
+require('vue-research-unit/static/vue-research-unit.css')
 let _Vue = null
 let keys = Object.keys(components)
 export default {
