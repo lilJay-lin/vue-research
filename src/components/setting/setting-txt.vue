@@ -38,6 +38,10 @@
         type: String,
         default: ''
       }
+    },
+    created: function () {
+      console.log(this.cssText)
+      console.dir(this.styleObject)
     }
   }
 </script>

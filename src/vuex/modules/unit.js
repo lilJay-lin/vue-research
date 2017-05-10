@@ -88,7 +88,7 @@ const actions = {
     }
     let cssText = item.data.cssText
     util.each(option, (val, key) => {
-      let reg = new RegExp('(;|\\s+|^)' + key + ':([#%\\-a-zA-Z0-9\\s\\(\\)]*)(;|$)', 'g')
+      let reg = new RegExp('(;|\\s+|^)' + key + ':([#%\\-a-zA-Z0-9\\s\\(\\),]*)(;|$)', 'g')
       let hint = 0
       cssText = cssText.replace(reg, (text, split, oldVal) => {
         hint = 1

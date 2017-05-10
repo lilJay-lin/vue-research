@@ -6,7 +6,7 @@
 * 从样式字符串提取指定样式属性配置
 * */
 export const convertToObject = (cssText = '') => {
-  let reg = new RegExp('(;|\\s*|^)([\\-a-zA-Z0-9]*)\\s*:\\s*([%#\\-a-zA-Z0-9\\(\\)]*)\\s*;|$', 'g')
+  let reg = new RegExp('(;|\\s*|^)([\\-a-zA-Z0-9]*)\\s*:\\s*([#%\\-a-zA-Z0-9\\s\\(\\),]*)\\s*;|$', 'g')
   let b = null
   let styleObject = {}
   while ((b = reg.exec(cssText))[0]) {
